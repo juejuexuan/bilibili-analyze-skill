@@ -14,6 +14,20 @@ cookies*.txt
 *.m4a
 *.webm
 
+# 流水线产物（若在仓库目录内直接运行，避免误提交）
+audio_best.*
+metadata.json
+state.json
+chapters.json
+subtitles.srt
+thumbnail.*
+transcript*.txt
+transcript_full.json
+analysis.html
+screenshot_full.png
+section_*.png
+sections_manifest.json
+
 # 系统文件
 .DS_Store
 Thumbs.db
