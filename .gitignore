@@ -1,0 +1,19 @@
+# 运行产物（含音频、转写、截图，可能涉及个人观看记录）
+output/
+
+# Python
+__pycache__/
+*.pyc
+
+# 凭据
+cookies*.txt
+*.cookie
+
+# 媒体与临时文件
+*.mp3
+*.m4a
+*.webm
+
+# 系统文件
+.DS_Store
+Thumbs.db

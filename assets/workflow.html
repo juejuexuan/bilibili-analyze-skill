@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilibili Analyze Skill 工作流程图</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.85);
+      --card-border: rgba(148, 163, 184, 0.15);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --error: #f87171;
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(ellipse at top, #1e293b 0%, var(--bg) 60%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      margin: 0 0 12px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    .flow::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2), var(--success));
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .phase {
+      position: relative;
+      z-index: 1;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .phase:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -12px rgba(56, 189, 248, 0.2);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+    }
+
+    .phase-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .phase-cmd {
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 6px 10px;
+      border-radius: 6px;
+      color: var(--accent);
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    .phase-body {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .phase-body ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .phase-body li {
+      margin-bottom: 6px;
+    }
+
+    .outputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .branch {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 14px 0 0;
+    }
+
+    .branch-card {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .branch-card strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .branch-card span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .decision {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 14px 0;
+      flex-wrap: wrap;
+    }
+
+    .decision-box {
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      color: var(--warning);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .arrow {
+      color: var(--muted);
+      font-size: 1.4rem;
+    }
+
+    .final {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(56, 189, 248, 0.15));
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .final .phase-title {
+      color: var(--success);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.6rem; }
+      .phase { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Bilibili Analyze Skill 工作流程图</h1>
+      <p class="subtitle">从 B站链接到 Obsidian 笔记的全自动分析流水线</p>
+    </header>
+
+    <div class="flow">
+
+      <!-- Phase 0: Preflight -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="badge">0</div>
+          <div>
+            <h2 class="phase-title">环境预检</h2>
+            <span class="phase-cmd">python scripts/preflight.py</span>
+          </div>
+        </div>
+        <div class="phase-body">
+          检测 yt-dlp、ffmpeg、ffprobe、Python、Chrome、Whisper 是否就绪，缺失时给出安装命令。
+        </div>
+      </div>
+
+      <!-- Phase 1: Download -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="badge">1</div>
+          <div>
+            <h2 class="phase-title">下载（可并行）</h2>
+            <span class="phase-cmd">python scripts/download.py &lt;url&gt; --workdir &lt;dir&gt;</span>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="branch">
+            <div class="branch-card">
+              <strong>元数据</strong>
+              <span>yt-dlp → metadata.json</span>
+            </div>
+            <div class="branch-card">
+              <strong>音频</strong>
+              <span>最佳音频流 → ffmpeg 转 mp3</span>
+            </div>
+            <div class="branch-card">
+              <strong>封面</strong>
+              <span>缩略图 thumbnail.jpg</span>
+            </div>
+            <div class="branch-card">
+              <strong>CC 字幕</strong>
+              <span>如有则直接下载</span>
+            </div>
+          </div>
+          <div class="outputs">
+            <span class="tag">metadata.json</span>
+            <span class="tag">audio_best.mp3</span>
+            <span class="tag">thumbnail.jpg</span>
+            <span class="tag">*.srt（可选）</span>
+            <span class="tag">state.json</span>
+          </div>
+          <div class="decision">
+            <span class="decision-box">遇到 412？</span>
+            <span class="arrow">→</span>
+            <span class="tag">换 b23.tv 短链</span>
+            <span class="tag">传 cookies.txt</span>
+            <span class="tag">--cookies-from-browser</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2: Transcribe -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="badge">2</div>
+          <div>
+            <h2 class="phase-title">转写</h2>
+            <span class="phase-cmd">python scripts/transcribe.py &lt;workdir/state.json&gt;</span>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="decision">
+            <span class="decision-box">有 CC 字幕？</span>
+            <span class="arrow">→</span>
+            <span class="tag">直接解析，跳过 Whisper</span>
+            <span class="arrow">→</span>
+            <span class="tag">faster-whisper</span>
+            <span class="tag">openai-whisper 回退</span>
+          </div>
+          <div class="outputs">
+            <span class="tag">transcript_full.json</span>
+            <span class="tag">transcript_segments.txt</span>
+            <span class="tag">transcript.txt</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3: AI Chapter + HTML -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="badge">3</div>
+          <div>
+            <h2 class="phase-title">AI 分章 + HTML 生成</h2>
+            <span class="phase-cmd">python scripts/build_page.py &lt;workdir&gt;</span>
+          </div>
+        </div>
+        <div class="phase-body">
+          <ul>
+            <li>AI 按视频自然结构分章（problem / steps / pitfalls / conclusion / key_quote）</li>
+            <li>为每章生成动态 SVG 图表</li>
+            <li>构建单页离线 HTML，内联 CSS + SVG</li>
+          </ul>
+          <div class="outputs">
+            <span class="tag">chapters.json</span>
+            <span class="tag">analysis.html</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 4: Screenshot -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="badge">4</div>
+          <div>
+            <h2 class="phase-title">截图切片（CDP clip）</h2>
+            <span class="phase-cmd">python scripts/screenshot.py &lt;workdir&gt;</span>
+          </div>
+        </div>
+        <div class="phase-body">
+          Chrome headless 打开 analysis.html，使用 CDP <code>Page.captureScreenshot</code> + <code>clip</code> 按 <code>&lt;section class="chapter"&gt;</code> 精确截取每章内容，合并为完整长截图。
+          <div class="outputs">
+            <span class="tag">section_1.png</span>
+            <span class="tag">…</span>
+            <span class="tag">section_N.png</span>
+            <span class="tag">screenshot_full.png</span>
+            <span class="tag">sections_manifest.json</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 5: Export to Obsidian -->
+      <div class="phase final">
+        <div class="phase-header">
+          <div class="badge">5</div>
+          <div>
+            <h2 class="phase-title">写入 Obsidian（可选）</h2>
+            <span class="phase-cmd">python scripts/export_obsidian.py &lt;workdir&gt; --vault &lt;vault&gt;</span>
+          </div>
+        </div>
+        <div class="phase-body">
+          复制附件到 vault，生成带 YAML frontmatter、章节结构、截图嵌入和跳转链接的 Markdown 笔记。
+          <div class="outputs">
+            <span class="tag">学习/视频课程/&lt;title&gt;.md</span>
+            <span class="tag">附件/视频课程附件/&lt;title&gt;-*.png</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      bilibili-analyze-skill v1.1.0 · Workflow visualization
+    </footer>
+  </div>
+</body>
+</html>

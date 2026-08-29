@@ -1,0 +1,34 @@
+{
+  "_schema": "bilibili-analyze chapters v1",
+  "_svg_types": ["flow", "timeline", "matrix", "decision_tree", "causal"],
+  "_field_map": {
+    "flow": ["svg_items"],
+    "timeline": ["svg_events"],
+    "matrix": ["svg_cols", "svg_rows", "svg_data"],
+    "decision_tree": ["svg_question", "svg_yes", "svg_no"],
+    "causal": ["svg_nodes"]
+  },
+  "chapters": [
+    {
+      "id": "ch1",
+      "title": "Chapter Title",
+      "start": 0,
+      "time_range": "00:00 - 05:00",
+      "problem": "What problem does this chapter solve?",
+      "steps": ["Step 1", "Step 2", "Step 3"],
+      "pitfalls": ["Pitfall 1 + solution", "Pitfall 2 + solution"],
+      "conclusion": "One-sentence conclusion",
+      "key_quote": "Original quote from video (with timestamp)",
+      "svg_type": "flow",
+      "svg_items": ["Node 1", "Node 2", "Node 3"],
+      "svg_events": [],
+      "svg_cols": [],
+      "svg_rows": [],
+      "svg_data": [],
+      "svg_question": "",
+      "svg_yes": "",
+      "svg_no": "",
+      "svg_nodes": []
+    }
+  ]
+}
