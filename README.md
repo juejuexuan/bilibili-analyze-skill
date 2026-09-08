@@ -1,5 +1,9 @@
 <div align="center">
 
+<a href="README.md">简体中文</a> ｜ <a href="README_EN.md">English</a>
+
+<br>
+
 # bilibili-analyze
 
 **从 B 站视频链接，到一份带 SVG 图表的离线 HTML 笔记**
