@@ -1,0 +1,41 @@
+{
+  "total_sections": 6,
+  "screenshots": [
+    {
+      "file": "section_1.png",
+      "section": 1,
+      "height": 887,
+      "size_kb": 199
+    },
+    {
+      "file": "section_2.png",
+      "section": 2,
+      "height": 881,
+      "size_kb": 198
+    },
+    {
+      "file": "section_3.png",
+      "section": 3,
+      "height": 821,
+      "size_kb": 186
+    },
+    {
+      "file": "section_4.png",
+      "section": 4,
+      "height": 851,
+      "size_kb": 210
+    },
+    {
+      "file": "section_5.png",
+      "section": 5,
+      "height": 896,
+      "size_kb": 222
+    },
+    {
+      "file": "section_6.png",
+      "section": 6,
+      "height": 989,
+      "size_kb": 207
+    }
+  ]
+}

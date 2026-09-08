@@ -1,0 +1,35 @@
+{
+  "total_sections": 5,
+  "screenshots": [
+    {
+      "file": "section_1.png",
+      "section": 1,
+      "height": 887,
+      "size_kb": 169
+    },
+    {
+      "file": "section_2.png",
+      "section": 2,
+      "height": 967,
+      "size_kb": 193
+    },
+    {
+      "file": "section_3.png",
+      "section": 3,
+      "height": 851,
+      "size_kb": 199
+    },
+    {
+      "file": "section_4.png",
+      "section": 4,
+      "height": 887,
+      "size_kb": 185
+    },
+    {
+      "file": "section_5.png",
+      "section": 5,
+      "height": 960,
+      "size_kb": 212
+    }
+  ]
+}

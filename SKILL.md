@@ -6,7 +6,7 @@ tags: [bilibili, video-analysis, whisper, transcription, chinese]
 
 # Bilibili Video Deep Analyzer
 
-> 版本：**1.1.0**  |  详见 [`VERSION`](VERSION) 与 [`CHANGELOG.md`](CHANGELOG.md)
+> 版本：**1.2.0**  |  详见 [`VERSION`](VERSION) 与 [`CHANGELOG.md`](CHANGELOG.md)
 
 从 B站链接到离线 HTML 笔记的全自动分析流水线。
 
@@ -236,7 +236,7 @@ python scripts/export_obsidian.py <workdir> --vault /path/to/your/vault
 
 ## 版本管理
 
-- **当前版本**：`1.1.0`（见 [`VERSION`](VERSION)）
+- **当前版本**：`1.2.0`（见 [`VERSION`](VERSION)）
 - **变更日志**：见 [`CHANGELOG.md`](CHANGELOG.md)
 - **语义化版本**：`MAJOR.MINOR.PATCH`
   - `MAJOR`：不兼容的接口或输出格式变更

@@ -5,11 +5,15 @@ All notable changes to the `bilibili-analyze` skill are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.2.0] - 2026-09-08
+
+### Added
+- 界面全面美化：渐变 Hero 头部、目录导航（TOC）、章节编号徽章、分区着色卡片（核心问题 / 操作步骤 / 注意陷阱 / 结论 / 关键原话）、悬停动效、`prefers-color-scheme` 暗色模式适配；SVG 配色同步更新，空内容分区不再渲染。
+- 新增 `examples/`：两个脱敏的真实运行结果（6 章 + 5 章，选自中科院官方账号「中国科普博览」的公开科普视频，覆盖全部五种 SVG 图表类型），含章节截图与整页长图；已移除音频、字幕、转写文本，`metadata.json` 精简、`state.json` 最小化，不含任何本机路径与推广信息。
+- 新增 `requirements.txt`、`.gitignore`（并加强：仓库内直接运行产生的流水线产物一律忽略，`examples/` 显式放行）。
 
 ### Changed
 - 面向公开发布的清理：移除所有个人环境配置（本机 Obsidian vault 路径与个人目录约定），Obsidian 导出改为完全参数化——`--vault` 参数或 `BILIBILI_ANALYZE_VAULT` 环境变量，未指定时友好报错退出。
-- 新增 `README.md`、`LICENSE`（MIT）、`requirements.txt`、`.gitignore`。
 
 ### Fixed
 - `screenshot.py` / `screenshot_sections.py`: HTTP 服务和 Chrome CDP 不再写死 `18923/18924`。并发任务共用固定端口时，后启动的任务会劫持先启动的 headless Chrome，导致章节截图从中途开始变成另一份 `analysis.html`。现改为临时端口 + 独立 `--user-data-dir`，并校验 `location.href` 是否指向本任务的 HTML。
@@ -42,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Full-page screenshot and section slicing.
   - Export to Obsidian vault with embedded screenshots.
 
-[Unreleased]: https://github.com/juejuexuan/bilibili-analyze-skill/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/juejuexuan/bilibili-analyze-skill/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/juejuexuan/bilibili-analyze-skill/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/juejuexuan/bilibili-analyze-skill/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/juejuexuan/bilibili-analyze-skill/releases/tag/v1.0.0
