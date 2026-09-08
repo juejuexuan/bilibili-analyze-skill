@@ -18,7 +18,10 @@
 
 <br><br>
 
-<img src="examples/BV1zwtG6qELB/section_1.png" width="720" alt="analysis.html 界面预览">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/pipeline-dark.svg">
+  <img src="assets/pipeline-light.svg" width="720" alt="流水线：视频链接 → 并行下载 → 字幕转写 → AI 分章 → 离线笔记 → 章节截图 → Obsidian">
+</picture>
 
 </div>
 

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 132" role="img" aria-label="bilibili-analyze pipeline">
+<rect x="24" y="38" width="104" height="56" rx="10" fill="#FB7299" fill-opacity="0.12" stroke="#FB7299" stroke-width="1.5"/>
+<text x="76.0" y="62" text-anchor="middle" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif" font-size="14" font-weight="700" fill="#171717">视频链接</text>
+<text x="76.0" y="80" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#525252">b23 / BV</text>
+<line x1="131" y1="66" x2="142" y2="66" stroke="#A3A3A3" stroke-width="1.5"/>
+<polygon points="142,62 150,66 142,70" fill="#A3A3A3"/>
+<rect x="148" y="38" width="104" height="56" rx="10" fill="#0EA5E9" fill-opacity="0.12" stroke="#0EA5E9" stroke-width="1.5"/>
+<text x="200.0" y="62" text-anchor="middle" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif" font-size="14" font-weight="700" fill="#171717">并行下载</text>
+<text x="200.0" y="80" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#525252">yt-dlp</text>
+<line x1="255" y1="66" x2="266" y2="66" stroke="#A3A3A3" stroke-width="1.5"/>
+<polygon points="266,62 274,66 266,70" fill="#A3A3A3"/>
+<rect x="272" y="38" width="104" height="56" rx="10" fill="#6366F1" fill-opacity="0.12" stroke="#6366F1" stroke-width="1.5"/>
+<text x="324.0" y="62" text-anchor="middle" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif" font-size="14" font-weight="700" fill="#171717">字幕转写</text>
+<text x="324.0" y="80" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#525252">CC / Whisper</text>
+<line x1="379" y1="66" x2="390" y2="66" stroke="#A3A3A3" stroke-width="1.5"/>
+<polygon points="390,62 398,66 390,70" fill="#A3A3A3"/>
+<rect x="396" y="38" width="104" height="56" rx="10" fill="#8B5CF6" fill-opacity="0.12" stroke="#8B5CF6" stroke-width="1.5"/>
+<text x="448.0" y="62" text-anchor="middle" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif" font-size="14" font-weight="700" fill="#171717">AI 分章</text>
+<text x="448.0" y="80" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#525252">chapters.json</text>
+<line x1="503" y1="66" x2="514" y2="66" stroke="#A3A3A3" stroke-width="1.5"/>
+<polygon points="514,62 522,66 514,70" fill="#A3A3A3"/>
+<rect x="520" y="38" width="104" height="56" rx="10" fill="#10B981" fill-opacity="0.12" stroke="#10B981" stroke-width="1.5"/>
+<text x="572.0" y="62" text-anchor="middle" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif" font-size="14" font-weight="700" fill="#171717">离线笔记</text>
+<text x="572.0" y="80" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#525252">单文件 HTML</text>
+<line x1="627" y1="66" x2="638" y2="66" stroke="#A3A3A3" stroke-width="1.5"/>
+<polygon points="638,62 646,66 638,70" fill="#A3A3A3"/>
+<rect x="644" y="38" width="104" height="56" rx="10" fill="#F59E0B" fill-opacity="0.12" stroke="#F59E0B" stroke-width="1.5"/>
+<text x="696.0" y="62" text-anchor="middle" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif" font-size="14" font-weight="700" fill="#171717">章节截图</text>
+<text x="696.0" y="80" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#525252">CDP clip</text>
+<line x1="751" y1="66" x2="762" y2="66" stroke="#A3A3A3" stroke-width="1.5"/>
+<polygon points="762,62 770,66 762,70" fill="#A3A3A3"/>
+<rect x="768" y="38" width="104" height="56" rx="10" fill="#EC4899" fill-opacity="0.12" stroke="#EC4899" stroke-width="1.5"/>
+<text x="820.0" y="62" text-anchor="middle" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif" font-size="14" font-weight="700" fill="#171717">Obsidian</text>
+<text x="820.0" y="80" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#525252">可选导出</text>
+</svg>
